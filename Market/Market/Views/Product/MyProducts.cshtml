@@ -1,0 +1,43 @@
+﻿@using Market.Models;
+@{
+    ViewData["Title"] = "MyProducts";
+    Layout = "_shopLayout";
+    ViewBag.Role = "Seller";
+}
+
+<h1>MyProducts</h1>
+
+@model List<Product>
+
+<div class="container px-4 px-lg-5 mt-5">
+    <div class="row">
+        @foreach (var p in Model)
+        {
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+                    <!-- Sale badge-->
+                    <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                    <!-- Product image-->
+                    <img class="card-img-top" src="@p.PictureUrl" alt="@p.Description" />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">@p.Name</h5>
+                            <!-- Product price-->
+                            @p.Price $
+                            <h5 class="fw-bolder">Quantity @p.quantity</h5>
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center">
+                            <a class="btn btn-outline-dark mt-auto" asp-controller="Product" asp-action="Edit" asp-route-id="@p.Id">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<a asp-action="Add" asp-controller="Product" class="btn btn-danger">Add Product</a>

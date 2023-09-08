@@ -1,0 +1,47 @@
+﻿@using Market.Models;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Product
+<form method="post" enctype="multipart/form-data" asp-action="@ViewBag.Action" asp-controller="Product">
+    @if (@ViewBag.Action == "SaveEdit")
+    {
+        <input type="hidden" asp-for="@Model.SellerId" value="@Model.SellerId" />
+        <input type="hidden" asp-for="@Model.Id" value="@ViewBag.Id" />
+        <input type="hidden" asp-for="@Model.PictureUrl" value="@Model.PictureUrl" />
+    }
+    else
+    {
+        <input type="hidden" asp-for="@Model.SellerId" value="@ViewBag.SellerId" />
+    }
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        <input asp-for="@Model.Name" class="form-control" placeholder="Enter the name of the product" />
+        <span asp-validation-for="@Model.Name" class="text-bg-danger"></span>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price)
+        <input asp-for="@Model.Price" class="form-control" placeholder="Enter the price" />
+        <span asp-validation-for="@Model.Price" class="text-bg-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.quantity)
+        <input asp-for="@Model.quantity" class="form-control" placeholder="Enter the quantity" />
+        <span asp-validation-for="@Model.quantity" class="text-bg-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.Picture)
+        <input asp-for="@Model.Picture" type="file" class="form-control" />
+        <span asp-validation-for="@Model.Picture" class="text-bg-danger"></span>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+@section scripts{
+    <partial name="_jqPartial"/>
+}

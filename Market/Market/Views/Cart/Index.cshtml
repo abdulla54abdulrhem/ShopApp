@@ -1,0 +1,49 @@
+﻿@using Market.Models;
+@{
+    ViewData["Title"] = "Index";
+    
+}
+@model List<CartItem>
+<h1>My Cart</h1>
+@foreach (var it in Model)
+{
+    <div class="card mb-3">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <div class="card-img-container">
+                    <img src="@it.Product.PictureUrl" alt="Card image" class="card-img" style="width: 450px; height: 300px;">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">Name: @it.Product.Name</h5>
+                    <p class="card-text">Price: @it.Product.Price</p>
+                    @Html.Label("Quantity")
+                    
+                        <input type="hidden" value="@it.Id" />
+                        @*<select asp-for="@it.quantity" class="form-control quantity-select">
+                            @for (int i = 1; i <= it.Product.quantity + it.quantity; i++)
+                            {
+                                <option>@i</option>
+                            }
+                        </select>
+                        *@
+                        <p>Quantity Ordered: @it.quantity</p>
+                        <span asp-validation-for="@it.quantity"></span>
+                        
+                   <a asp-action="Edit" asp-controller="Cart" asp-route-id="@it.Id" class="btn btn-danger mt-2" >Edit Quantity</a>
+                    <a asp-action="RemoveFromCart" asp-controller="Cart" asp-route-id="@it.Id" class="btn btn-danger mt-2" onclick="return confirm('Are you sure?')">Delete Item</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}}
+
+<a asp-action="Add" asp-controller="Rec" asp-route-Id="@ViewBag.CartId" class="btn btn-success" onclick="return confirm('Are you sure you want to buy the items in the cart?')">CheckOut</a>
+
+@section scripts{
+
+    <partial name="_jqPartial"/> 
+
+}
+

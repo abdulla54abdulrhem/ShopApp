@@ -1,0 +1,46 @@
+﻿@using Market.ViewModel;
+@using Market.Models;
+@{
+    ViewData["Title"] = "Details";
+}
+@model ProductDetails
+<h1>Details</h1>
+<form method="post" asp-action="AddToCart" asp-controller="Cart">
+    <div class="col mb-5">
+        <div class="card h-100">
+            <!-- Sale badge-->
+            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+            <!-- Product image-->
+            <img class="card-img-top" src="@Model.product.PictureUrl" alt="@Model.product.Description" />
+            <!-- Product details-->
+            <div class="card-body p-4">
+                <div class="text-center">
+                    <!-- Product name-->
+                    <h5 class="fw-bolder">@Model.product.Name</h5>
+                    <h6 class="fw-bolder">Sold By: @Model.SellerName</h6>
+                    <!-- Product price-->
+                    @Model.product.Price $
+                </div>
+            </div>
+            <!-- Product actions-->
+            <div class="card-footer">
+                <div class="form-group">
+                    <label for="quantitySelect" class="fw-bold">Select Quantity:</label>
+                    <select id="quantitySelect" asp-for="@Model.product.quantity" class="form-control">
+                        @for (int i = 1; i <= Model.product.quantity; i++)
+                        {
+                            <option>@i</option>
+                        }
+                    </select>
+                </div>
+                <input type="hidden" asp-for="@Model.product.Id" value="@Model.product.Id" />
+                <input type="hidden" asp-for="@Model.product.Name" value="@Model.product.Name" />
+                <input type="hidden" asp-for="@Model.product.Description" value="@Model.product.Description" />
+                <input type="hidden" asp-for="@Model.product.SellerId" value="@Model.product.SellerId" />
+                <input type="hidden" asp-for="@Model.product.PictureUrl" value="@Model.product.PictureUrl" />
+                <input type="hidden" asp-for="@Model.SellerName" value="@Model.SellerName" />
+                <button type="submit" class="btn btn-primary">Add To Cart</button>
+            </div>
+        </div>
+    </div>
+</form>

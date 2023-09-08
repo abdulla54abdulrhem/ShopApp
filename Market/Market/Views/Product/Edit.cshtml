@@ -1,0 +1,10 @@
+﻿@using Market.Models;
+@{
+    ViewData["Title"] = "Edit";
+    ViewBag.Action = "SaveEdit";
+    ViewBag.Role = "Seller";
+}
+
+<h1>Edit</h1>
+@model Product
+@Html.Partial("_formPartial",@Model);

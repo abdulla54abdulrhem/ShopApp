@@ -1,0 +1,39 @@
+﻿@using Market.Models;
+@{
+    ViewData["Title"] = "Index";
+}
+@model List<Reciept>
+<h1>My Receipts</h1>
+
+@foreach (var rec in Model)
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Item</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in rec.cartItems)
+            {
+                <tr>
+                    <th scope="row">#</th>
+                    <td>@item.Product.Name</td>
+                    <td>@item.quantity</td>
+                    <td>@item.Price</td>
+                    <td>@(item.Price * item.quantity)</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4" class="text-end fw-bold">Total:</td>
+                <td>@rec.Total</td>
+            </tr>
+        </tfoot>
+    </table>
+}

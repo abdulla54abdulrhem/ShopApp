@@ -1,0 +1,41 @@
+﻿@using Market.Models;
+@model Product;
+@{
+    ViewData["Title"] = "Add";
+    //Model.SellerId = ViewBag.SellerId;
+    ViewBag.Action = "SaveAdd";
+}
+
+<h1>Add</h1>
+@Html.Partial("_formPartial",@Model);
+@*<form method="post" enctype="multipart/form-data" asp-action="SaveAdd" asp-controller="Product">
+    
+    <input type="hidden" asp-for="@Model.SellerId" value = "@ViewBag.SellerId"></input>
+    <div class="form-group">
+    @Html.LabelFor(model=>model.Name)
+    <input asp-for="@Model.Name" placeholder="Enter the name of product">ddd</input>
+  </div>
+ @* <div class="form-group">
+    @Html.LabelFor(model=>model.Picture)
+    <input asp-for="@Model.Picture"></input>
+  </div>*@
+@*  <div class="form-group">
+    @Html.LabelFor(model=>model.Price)
+    <input asp-for="@Model.Price" placeholder="Enter the price"></input>
+  </div>
+  <div class="form-group">
+    @Html.LabelFor(model=>model.quantity)
+    <input asp-for="@Model.quantity" placeholder="Enter the quantity"></input>
+  </div>
+  <div class="form-group">
+    @Html.LabelFor(model=>model.Picture)
+    <input asp-for="@Model.Picture" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+
+
+
+</form>*@
+@section scripts{
+    <partial name="_jqPartial"/>
+}

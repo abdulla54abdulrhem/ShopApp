@@ -1,0 +1,37 @@
+﻿@using Market.Models;
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_shopLayout";
+}
+@model CartItem
+<h1>Edit</h1>
+<form method="post" asp-action="SaveEdit" asp-controller="Cart">
+  <div class="card mb-3">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <div class="card-img-container">
+                    <img src="@Model.Product.PictureUrl" alt="Card image" class="card-img" style="width: 450px; height: 300px;">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-tModelle">Name: @Model.Product.Name</h5>
+                    <p class="card-text">Price: @Model.Product.Price</p>
+                    @Html.Label("Quantity")
+                    
+                        <input asp-for="@Model.Id" type="hidden" value="@Model.Id"/>
+                        <select asp-for="@Model.quantity" class="form-control quantModely-select">
+                            @for (int i = 1; i <= Model.Product.quantity+ Model.quantity; i++)
+                            {
+                                <option>@i</option>
+                            }
+                        </select>
+                        <span asp-validation-for="@Model.quantity"></span>
+                        <button type="submit" class="btn btn-primary mt-2">Edit Quantity</button>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
